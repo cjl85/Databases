@@ -1,0 +1,17 @@
+1) What data types do each of these values represent?
+
+"A Clockwork Orange"
+42
+09/02/1945
+98.7
+$15.99
+
+2) Explain when a database would be used. Explain when a text file would be used.
+
+3) Describe one difference between SQL and other programming languages.
+
+4) In your own words, explain how the pieces of a database system fit together at a high level.
+
+5) Explain the meaning of table, row, column, and value.
+
+6) List three data types that can be used in a table.
