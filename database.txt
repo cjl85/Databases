@@ -20,7 +20,7 @@ This allows us to concern ourselves with what we want to find out, rather than h
 
 4) In your own words, explain how the pieces of a database system fit together at a high level.
 
-A database is a piece of software that stores structured data and provides a means to access that data. A database saves information in a machine-readable format that allows it to efficiently store, search, and analyze data of various data types. It also provides or exposes a means to add, modify, and delete data; perhaps via a command line interface, a graphical user interface, or remotely via an API.
+A database is a piece of software that stores structured data and provides a means to access that data. A database saves information in a machine-readable format that allows it to efficiently store, search, and analyze data of various data types. It also provides a means to add, modify, and delete data; via command line, GUI, or remotely via an API.
 
 5) Explain the meaning of table, row, column, and value.
 
