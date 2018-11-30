@@ -1,17 +1,38 @@
 1) What data types do each of these values represent?
 
-"A Clockwork Orange"
-42
-09/02/1945
-98.7
-$15.99
+"A Clockwork Orange" - String
+42 - Integer/Number
+09/02/1945 - Integer/Date
+98.7 - Float
+$15.99 - Float/Currency
 
 2) Explain when a database would be used. Explain when a text file would be used.
 
+Databases are used to store large amounts of data that can be quickly read and modified. Databases are stored in binary format which can only be read by the computer.
+
+Text files should be used to store data that can be read by any developer/human.
+
 3) Describe one difference between SQL and other programming languages.
+
+Unlike other other languages, SQL is declarative and not procedural.
+
+This allows us to concern ourselves with what we want to find out, rather than how the database should find it. We don't have to define an algorithm for how the database should search; instead, we tell the database what we are looking for and the database engine determines the most efficient way to return that data.
 
 4) In your own words, explain how the pieces of a database system fit together at a high level.
 
 5) Explain the meaning of table, row, column, and value.
 
+Table: Structure that holds a collection of related data
+Row:  Horizontal collection of a conceptual unit
+Column: Vertical definition what the data represents
+Value: Data contained in a cell
+
 6) List three data types that can be used in a table.
+
+ String
+ Float
+ Integer
+
+ 7)
+
+ 
