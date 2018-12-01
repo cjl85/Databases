@@ -66,7 +66,7 @@ CREATE TABLE books (
   title            TEXT,
   author           TEXT,
   genre            TEXT,
-  date_published   DATE,
+  date_published   DATA DATE,
   total_copies     SMALLINT,
   available_copies SMALLINT
 );
@@ -146,24 +146,22 @@ You deleted one of the emails, so write a command to remove the row from the inb
 You started reading an email but just heard a crash in another room. Mark the email as unread before investigating the crash, so you can come back and read it later.
 
 INSERT INTO inbox
-    (id, sender, recipients, subject, body, sent_at, is_read, chain_id)
   VALUES
-    (1, 'def@def.com', 'def@def.net,
+    (1, 'def', 'def2',
       'Homework',
       'Do you do the HW assignment?',
       '2013-03-13 09:42:00 -7:00', TRUE, 10),
-    (2, 'ref@ref.com', 'ref@ref.net',
+    (2, 'ref', 'ref2',
       'Test',
       'How's it going?',
       '2011-05-13 09:44:00 -7:00', FALSE, 11),
-    (3, 'cef@cef.com', 'cef@cef.com',
+    (3, 'cef', 'cef',
       'Tutor',
       'I'll be ready to tutor tomorrow',
       '2013-09-05 10:39:00 -7:00', TRUE, 31);
 
 DELETE FROM inbox
     WHERE id = 1;
-
 
 UPDATE inbox
     SET is_read = FALSE
