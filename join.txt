@@ -1,0 +1,175 @@
+1) How do you find related data held in two separate data tables?
+
+A JOIN statement enables you to combine one table’s foreign key with another table’s primary key.
+
+The resulting data outputted combines the two related pieces of data into one table.
+
+2) Explain, in your own words, the difference between an INNER JOIN, LEFT OUTER JOIN, and RIGHT OUTER JOIN. Give a real-world example for each.
+
+INNER JOIN - default join statement that returns records
+that exist in both tables.
+
+If we had a 2 tables, 1 for cat information and 1 for dog information.
+We could combine the two tables into a pet information database.
+
+LEFT OUTER JOIN - Returns records from the left table and then any matching second (right-most) table records
+
+In a restaurant, you can see if a customer placed an order or not.
+
+RIGHT OUTER JOIN - Returns records from the right table and then any matching second (left-most) table records
+
+In the same restaurant, you can look at the order and attach the
+customer's information to it.
+
+3) Define primary key and foreign key. Give a real-world example for each.
+
+Primary key - A unique identifier that only exists once in the entire table
+
+Foreign key - Opposite identifier of the primary key
+
+Customer ID would be the Primary key and the Foreign key would be the order. This is vice versa if we look at it from the other table.
+
+4) Define aliasing.
+
+Technique of abbreviation
+
+5) Change this query so that you are using aliasing:
+SELECT professor.name, compensation.salary,
+compensation.vacation_days FROM professor JOIN
+compensation ON professor.id =
+compensation.professor_id;
+
+SELECT p.name, c.name, c.vacation_days
+FROM professor AS p
+JOIN compensation AS c
+ON p.id = c.p_id
+
+6) Why would you use a NATURAL JOIN? Give a real-world example.
+
+When you have tables that have one or more associated columns that
+have the same data type, you can use a NATURAL JOIN
+
+7) Using this Employee schema and data, write queries to find the following information:
+List all employees and all shifts.
+
+SELECT employees.name, shifts.id, shifts.date, shifts.start_time, shifts.end_time
+FROM scheduled_shifts
+JOIN employees ON employees.id = scheduled_shifts.employee_id
+JOIN shifts ON shifts.id = scheduled_shifts.shift_id;
+
+8) Using this Adoption schema and data, please write queries to retrieve the following information and include the results:
+
+Create a list of all volunteers. If the volunteer is fostering a dog, include each dog as well.
+
+SELECT volunteers.first_name, volunteers.last_name, dogs.name
+FROM volunteers
+LEFT OUTER JOIN dogs ON dogs.id = volunteers.foster_dog_id;
+
+
+| first_name | last_name  | name      |
+| ---------- | ---------- | --------- |
+| Rubeus     | Hagrid     | Munchkin  |
+| Marjorie   | Dursley    | Marmaduke |
+| Sirius     | Black      |           |
+| Remus      | Lupin      |           |
+| Albus      | Dumbledore |           |
+
+
+
+The cat's name, adopter's name, and adopted date for each cat adopted within the past month to be displayed as part of the "Happy Tail" social media promotion which posts recent successful adoptions.
+
+SELECT cats.name, adopters.first_name, adopters.last_name, cat_adoptions.date
+FROM cat_adoptions
+JOIN adopters ON cat_adoptions.adopter_id = adopters.id
+JOIN cats ON cat_adoptions.cat_id = cats.id
+WHERE cat_adoptions.date > CURRENT_DATE - INTERVAL '30 DAYS';
+
+
+| name     | first_name | last_name | date                     |
+| -------- | ---------- | --------- | ------------------------ |
+| Mushi    | Arabella   | Figg      | 2018-11-11T00:00:00.000Z |
+| Victoire | Argus      | Filch     | 2018-11-16T00:00:00.000Z |
+
+
+
+Create a list of adopters who have not yet chosen a dog to adopt.
+
+SELECT adopters.first_name, adopters.last_name
+FROM adopters
+LEFT JOIN dog_adoptions ON adopters.id = dog_adoptions.adopter_id
+WHERE dog_adoptions.adopter_id IS NULL;
+
+
+| first_name | last_name |
+| ---------- | --------- |
+| Hermione   | Granger   |
+| Arabella   | Figg      |
+
+
+Lists of all cats and all dogs who have not been adopted.
+
+SELECT *
+FROM dog_adoptions
+FULL OUTER JOIN cat_adoptions ON true
+FULL OUTER JOIN dogs ON dogs.id = dog_adoptions.dog_id
+FULL OUTER JOIN cats ON cats.id = cat_adoptions.cat_id
+WHERE dog_adoptions.dog_id IS NULL AND cat_adoptions.cat_id IS NULL;
+
+| adopter_id | dog_id | date | fee | adopter_id | cat_id | date | fee | id    | name      | gender | age | weight | breed              | intake_date              | in_foster | id  | name     | gender | age | intake_date              | adoption_date |
+| ---------- | ------ | ---- | --- | ---------- | ------ | ---- | --- | ----- | --------- | ------ | --- | ------ | ------------------ | ------------------------ | --------- | --- | -------- | ------ | --- | ------------------------ | ------------- |
+|            |        |      |     |            |        |      |     | 10002 | Munchkin  | F      | 0   | 8      | dachsund chihuahua | 2017-01-13T00:00:00.000Z |           |     |          |        |     |                          |               |
+|            |        |      |     |            |        |      |     | 10001 | Boujee    | F      | 3   | 36     | labrador poodle    | 2017-06-22T00:00:00.000Z |           |     |          |        |     |                          |               |
+|            |        |      |     |            |        |      |     | 10003 | Lassie    | F      | 7   | 17     | collie shepherd    | 2016-07-05T00:00:00.000Z |           |     |          |        |     |                          |               |
+|            |        |      |     |            |        |      |     | 10004 | Marley    | M      | 0   | 10     | labrador           | 2017-05-04T00:00:00.000Z |           |     |          |        |     |                          |               |
+|            |        |      |     |            |        |      |     | 10006 | Marmaduke | M      | 7   | 150    | great dane         | 2016-03-22T00:00:00.000Z |           |     |          |        |     |                          |               |
+|            |        |      |     |            |        |      |     |       |           |        |     |        |                    |                          |           | 2   | Seashell | F      | 7   | 2016-01-09T00:00:00.000Z |               |
+|            |        |      |     |            |        |      |     |       |           |        |     |        |                    |                          |           | 5   | Nala     | F      | 1   | 2016-01-12T00:00:00.000Z |               |
+
+
+The name of the person who adopted Rosco.
+
+SELECT first_name, last_name
+FROM adopters
+INNER JOIN dog_adoptions
+ON adopters.id = dog_adoptions.adopter_id
+WHERE dog_adoptions.dog_id = 10007;
+
+| first_name | last_name |
+| ---------- | --------- |
+| Argus      | Filch     |
+
+
+9) Using this Library schema and data, write queries applying the following scenarios and include the results:
+
+To determine if the library should buy more copies of a given book, please provide the names and position, in order, of all of the patrons with a hold (request for a book with all copies checked out) on "Advanced Potion-Making".
+
+SELECT patrons.name, holds.rank, books.isbn
+FROM patrons
+JOIN holds ON patrons.id = holds.patron_id
+JOIN books ON books.isbn = holds.isbn
+WHERE books.isbn = '9136884926'
+ORDER BY holds.rank;
+
+
+| name           | rank | isbn       |
+| -------------- | ---- | ---------- |
+| Terry Boot     | 1    | 9136884926 |
+| Cedric Diggory | 2    | 9136884926 |
+
+
+List all of the library patrons. If they have one or more books checked out, list the books with the patrons.
+
+SELECT patrons.name,
+MAX((CASE WHEN books.title IN (SELECT title FROM books WHERE transactions.checked_in_date IS NULL) THEN books.title ELSE NULL END))
+FROM patron
+INNER JOIN transactions ON transactions.patron_id = patrons.id
+INNER JOIN books ON books.isbn = transactions.isbn
+GROUP BY patrons.name;
+
+| name             | max                                     |
+| ---------------- | --------------------------------------- |
+| Cedric Diggory   | Fantastic Beasts and Where to Find Them |
+| Cho Chang        |                                         |
+| Hermione Granger |                                         |
+| Padma Patil      |                                         |
+| Terry Boot       | Advanced Potion-Making                  |
