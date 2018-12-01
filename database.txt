@@ -40,30 +40,7 @@ Value: Data contained in a cell
  SELECT date, amount
  FROM payments;
 
- **Schema (PostgreSQL v9.6)**
-
-    CREATE TABLE payments(
-      "date"   DATE,
-      "payee"  VARCHAR(32),
-      "amount" DECIMAL(13,4),
-      "memo"   TEXT
-    );
-
-    INSERT INTO payments
-      ("date",       "payee",                "amount", "memo")
-    VALUES
-      ('2016-05-01', 'West Hill Apartments',  1500.00, 'Rent'),
-      ('2016-05-10', 'Best Toy Store',        37.00,   'Beanie Babies'),
-      ('2016-05-15', 'Mega Foods',            124.93,  'Groceries'),
-      ('2016-05-23', 'Shoes R Cool',          54.72,   'Athletic shoes');
-
-
----
-
-**Query #1**
-
-    SELECT date, amount
-    FROM payments;
+ Query - look up the date/amount from the payments table.
 
 | date                     | amount    |
 | ------------------------ | --------- |
@@ -72,93 +49,33 @@ Value: Data contained in a cell
 | 2016-05-15T00:00:00.000Z | 124.9300  |
 | 2016-05-23T00:00:00.000Z | 54.7200   |
 
----
+/////////////////////////////////////////////////////////////
 
-[View on DB Fiddle](https://www.db-fiddle.com/f/5gVGFmB8Aq66SejCFEbfdd/0)
+SELECT amount
+FROM payments
+WHERE amount > 500;
 
- Query - look up the date/amount from the payments table.
-
- SELECT amount
- FROM payments
- WHERE amount > 500;
-
- **Schema (PostgreSQL v9.6)**
-
-    CREATE TABLE payments(
-      "date"   DATE,
-      "payee"  VARCHAR(32),
-      "amount" DECIMAL(13,4),
-      "memo"   TEXT
-    );
-
-    INSERT INTO payments
-      ("date",       "payee",                "amount", "memo")
-    VALUES
-      ('2016-05-01', 'West Hill Apartments',  1500.00, 'Rent'),
-      ('2016-05-10', 'Best Toy Store',        37.00,   'Beanie Babies'),
-      ('2016-05-15', 'Mega Foods',            124.93,  'Groceries'),
-      ('2016-05-23', 'Shoes R Cool',          54.72,   'Athletic shoes');
-
-
----
-
-**Query #1**
-
-    SELECT amount
-    FROM payments
-    WHERE amount > 500;
+Query - look up the amount from the payment table, where the
+amount is greater or higher than 500.
 
 | amount    |
 | --------- |
 | 1500.0000 |
 
----
-
-[View on DB Fiddle](https://www.db-fiddle.com/f/5gVGFmB8Aq66SejCFEbfdd/0)
-
- Query - look up the amount from the payment table, where the
- amount is greater or higher than 500.
+/////////////////////////////////////////////////////////////
 
  SELECT *
  FROM payments
  WHERE payee = 'Mega Foods';
 
- **Schema (PostgreSQL v9.6)**
 
-    CREATE TABLE payments(
-      "date"   DATE,
-      "payee"  VARCHAR(32),
-      "amount" DECIMAL(13,4),
-      "memo"   TEXT
-    );
-
-    INSERT INTO payments
-      ("date",       "payee",                "amount", "memo")
-    VALUES
-      ('2016-05-01', 'West Hill Apartments',  1500.00, 'Rent'),
-      ('2016-05-10', 'Best Toy Store',        37.00,   'Beanie Babies'),
-      ('2016-05-15', 'Mega Foods',            124.93,  'Groceries'),
-      ('2016-05-23', 'Shoes R Cool',          54.72,   'Athletic shoes');
-
-
----
-
-**Query #1**
-
-    SELECT *
-    FROM payments
-    WHERE payee = 'Mega Foods';
+  Query - look up all info/data from the payments table,
+  that are related to the payee called 'Mega Foods'
 
 | date                     | payee      | amount   | memo      |
 | ------------------------ | ---------- | -------- | --------- |
 | 2016-05-15T00:00:00.000Z | Mega Foods | 124.9300 | Groceries |
 
----
-
-[View on DB Fiddle](https://www.db-fiddle.com/f/5gVGFmB8Aq66SejCFEbfdd/0)
-
- Query - look up all info/data from the payments table,
- that are related to the payee called 'Mega Foods'
 
  8)
 
@@ -172,114 +89,28 @@ SELECT email, signup
 FROM users
 WHERE name = 'DeAndre Data';
 
-**Schema (PostgreSQL v9.6)**
-
-    CREATE TABLE users(
-      "userid" INTEGER,
-      "name"   VARCHAR(32),
-      "email"  VARCHAR(64),
-      "signup" DATE
-    );
-
-    INSERT INTO users
-        ("userid", "name",              "email",                        "signup")
-    VALUES
-        ( 1,       'Aleesia Algorithm', 'aleesia.algorithm@uw.edu',     '2014-10-24'),
-        ( 2,       'DeAndre Data',      'datad@comcast.net',            '2008-01-20'),
-        ( 3,       'Chris Collection',  'chris.collection@outlook.com', '2012-01-20'),
-        ( 4,       'Brandy Boolean',    'bboolean@nasa.gov',            '1999-10-15');
-
-
----
-
-**Query #1**
-
-    SELECT email, signup
-    FROM users
-    WHERE name = 'DeAndre Data';
-
 | email             | signup                   |
 | ----------------- | ------------------------ |
 | datad@comcast.net | 2008-01-20T00:00:00.000Z |
 
----
+///////////////////////////////////////////////////
 
-[View on DB Fiddle](https://www.db-fiddle.com/f/iQAEYktwysXqcLQHv2dwbc/0)
-
-
-
-SELECT user ID, email
+SELECT userid, email
 FROM users
 WHERE email = 'aleesia.algorithm@uw.edu';
 
-**Schema (PostgreSQL v9.6)**
-
-    CREATE TABLE users(
-      "userid" INTEGER,
-      "name"   VARCHAR(32),
-      "email"  VARCHAR(64),
-      "signup" DATE
-    );
-
-    INSERT INTO users
-        ("userid", "name",              "email",                        "signup")
-    VALUES
-        ( 1,       'Aleesia Algorithm', 'aleesia.algorithm@uw.edu',     '2014-10-24'),
-        ( 2,       'DeAndre Data',      'datad@comcast.net',            '2008-01-20'),
-        ( 3,       'Chris Collection',  'chris.collection@outlook.com', '2012-01-20'),
-        ( 4,       'Brandy Boolean',    'bboolean@nasa.gov',            '1999-10-15');
-
-
----
-
-**Query #1**
-
-    SELECT user ID, email
-    FROM users
-    WHERE email = 'aleesia.algorithm@uw.edu';
 
 | id   | email                    |
 | ---- | ------------------------ |
 | test | aleesia.algorithm@uw.edu |
 
----
-
-[View on DB Fiddle](https://www.db-fiddle.com/f/iQAEYktwysXqcLQHv2dwbc/0)
+////////////////////////////////////////////////////
 
 SELECT *
 FROM users
 WHERE userid = 4;
 
-**Schema (PostgreSQL v9.6)**
-
-    CREATE TABLE users(
-      "userid" INTEGER,
-      "name"   VARCHAR(32),
-      "email"  VARCHAR(64),
-      "signup" DATE
-    );
-
-    INSERT INTO users
-        ("userid", "name",              "email",                        "signup")
-    VALUES
-        ( 1,       'Aleesia Algorithm', 'aleesia.algorithm@uw.edu',     '2014-10-24'),
-        ( 2,       'DeAndre Data',      'datad@comcast.net',            '2008-01-20'),
-        ( 3,       'Chris Collection',  'chris.collection@outlook.com', '2012-01-20'),
-        ( 4,       'Brandy Boolean',    'bboolean@nasa.gov',            '1999-10-15');
-
-
----
-
-**Query #1**
-
-    SELECT *
-    FROM users
-    WHERE userid = 4;
 
 | userid | name           | email             | signup                   |
 | ------ | -------------- | ----------------- | ------------------------ |
 | 4      | Brandy Boolean | bboolean@nasa.gov | 1999-10-15T00:00:00.000Z |
-
----
-
-[View on DB Fiddle](https://www.db-fiddle.com/f/iQAEYktwysXqcLQHv2dwbc/0)
